@@ -1,0 +1,33 @@
+# Ignore Python cache and bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Ignore virtual environments
+venv/
+.env/
+.env.*  # if you use .env.dev, .env.local, etc.
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore logs and local data
+*.log
+*.sqlite3
+*.db
+*.bak
+*.tmp
+data/outputs/
+data/logs/
+
+# VS Code settings (optional)
+.vscode/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Ignore token caches or AI SDK local stores
+.openai_api_key.json
+*.secrets.json

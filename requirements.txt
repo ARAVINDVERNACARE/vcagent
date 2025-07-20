@@ -1,0 +1,26 @@
+# Core
+python-dotenv==1.0.1
+requests==2.31.0
+
+# Azure & LangChain (for agent and LLM tools)
+langchain==0.1.16
+openai==1.34.0
+azure-ai-ml==1.15.0
+azure-identity==1.15.0
+azure-keyvault-secrets==4.7.0
+
+# Database access
+sqlalchemy==2.0.30
+psycopg2-binary==2.9.9  # For PostgreSQL
+pyodbc==5.1.0           # For MS SQL Server (optional)
+
+# Optional: Web interface
+fastapi==0.111.0
+uvicorn==0.30.1
+
+# Optional: Data handling
+pandas==2.2.2
+
+# Optional: Dev tools
+ipykernel==6.29.4
+jupyter==1.0.0

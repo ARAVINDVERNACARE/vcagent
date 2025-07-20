@@ -1,20 +1,17 @@
-import json
-from pathlib import Path
-import uuid
-from typing import Any, Callable, Set
-#Create a function to submit a support ticket
-def submit_support_ticket(email_address: str, description: str)  -> str:
-     script_dir = Path(__file__).parent  # Get the directory of the script
-     ticket_number = str(uuid.uuid4()).replace('-', '')[:6]
-     file_name = f"ticket-{ticket_number}.txt"
-     file_path = script_dir / file_name
-     text = f"Support ticket: {ticket_number}\nSubmitted by: {email_address}\nDescription:\n{description}"
-     file_path.write_text(text)
-    
-     message_json = json.dumps({"message": f"Support ticket {ticket_number} submitted. The ticket file is saved as {file_name}"})
-     return message_json
+from logic.sql_generator import generate_sql_query
+from db.db_connector import run_sql_query
+import pandas as pd
 
-#Define a set of callable functions
-user_functions: Set[Callable[..., Any]] = {
-     submit_support_ticket
- }
+def run_user_query(question: str) -> str:
+    try:
+        sql = generate_sql_query(question)
+        df = run_sql_query(sql)
+        if df.empty:
+            return "No results found."
+        return df.to_string(index=False)
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+# Toolset for agent
+from typing import Callable, Set, Any
+user_functions: Set[Callable[..., Any]] = { run_user_query }
